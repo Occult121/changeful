@@ -1,0 +1,177 @@
+<html> 
+<head> 
+</head> 
+<body> 
+<marquee behavior ="slide"> <h1>DBMS ,DATA WAREHOUSE AND DATA MINING </h1></marquee><br> 
+<h2><nav>
+<ol type="1">
+<li><a href="#lossless"> LOSS LESS JOIN DECOMPOSITION </a></li> 
+<li><a href="#existence"> EXISTENCE DEPENDENCIES </a></li> 
+<li><a href="#functional">  FUNCTIONAL DEPENDENCIES </a></li> 
+<li><a href="#normalize"> NORMALIZATION </a></li> 
+<li><a href="#acid">  TRANSACTIONS </a></li> 
+<li><a href="#sp"> SPATIAL DATABASES </a></li> 
+<li><a href="#data mining ">  DATA MINING VS WEB MINING </a></li> 
+<li><a href="#outliers">  OUTLIER ANALYSIS </a></li> 
+<li><a href="#dwh architecture">  DATA WAREHOUSE ARCHITECTURE </a></li> 
+<li><a href="#data discretization"> DATA DISCRETIZATION </a></li> 
+
+<li><a href="#attributes">  ATTRIBUTES </a></li> 
+<li><a href="#data-mining types"> DATA MINING TYPES </a></li> 
+<li><a href ="#olap">  OLAP </a></li> 
+</ol> 
+</nav>
+</h2> 
+<br><br> 
+<section id="lossless"> 
+<a target="_blank" href="#Loss less join decomposition">Loss less join decomposition</a> --- we have 2 rel schema r1 and r2 s.t <br> 
+for all attributes in  r1 and r2 , we have r1   u    r2 -> r1 and  r1    u  r2 ->  r2 holding good . <br> 
+dependency preservation occurs herein <br><br> 
+<a target="_blank"  href="https://devendraworld.wordpress.com/2019/03/27/lossless-and-lossy-decomposition-in-dbms/"><img src="https://devendraworld.wordpress.com/wp-content/uploads/2019/03/th-21250884587976999282..jpg" alt="g" width ="350" height ="350"></a> 
+<br></section> 
+<br>
+<br> 
+<section id ="existence"> 
+<a target="_blank"  href="#Existence dependencies">Existence dependencies</a> --- there is a rel schema r where for all<br> 
+ attributes in r , the functional dependency is x ->  y s.t if operationally y is deleted ,<br> 
+ so is x. y is dominant entity , x is subordinate entity . dependency preservation occurs herein <br><br> 
+</section> 
+<br><br> 
+<section id="functional"> 
+	Types of <a target="_blank"  href="#functional dependencies">functional dependencies</a> --- <br> 
+
+1 . full functional --- all non key attributes are fully dependent on  key attribute<br>  
+2 .  partial functional dependency ---- some non key attributes are dependent on key attribute and remaining non key attributes<br> 
+ are dependent on  key attribute and on some other non key attributes <br> 
+3 .transitive dependency--- attributes in  key col of 1 rel correspond to the key attributes in  col of another rel <br> 
+4 . multi valued dependency --- in   4NF <br> 
+5 .join dependency --- in 5NF 
+
+<br> 
+</section> 
+<br><br> 
+<section id="normalize" style ="background-color :blue"> 
+<font color ="white"> 
+	The removal of redundancy from tables or rels is normalization. While 1nf has redundant data<br> 
+ that is removed to some extent in  2nf . still higher nf is BCNF  that mentions super key values . <br> 
+all rels in  3NF  are in  BCNF  but the reverse is not always true . there’s a rel r where for all functional dependencies f on  r , can find a <- r ,b <- r s.t a ->b is a trivial<br> 
+ dependency in f+ ,s.t at least one of following is true :<br>
+ a -> b is trivial dependency in  r <br> 
+ a is a super key to r <br><br> 
+ 
+Still higher nf is 3NF  that mentions candidate key values , transitive dependencies .<br> 
+ there’s a rel r where for all functional dependencies f on  r , can find a <- r ,b <- r s.t a -> b is a trivial dependency in f+ ,<br> 
+s.t at least one of following is true : <br> 
+a ->b is trivial dependency in  r , <br> 
+a is a super key to r, <br>
+can find an extraneous attribute in  [b-a], that is contained in a candidate key for r <br> 
+
+4NF  mentions multi valued dependencies <br>
+5NF  mentions join dependencies<br> 
+</font> 
+</section> 
+<br><br> 
+<section id ="acid" style ="background-color :LightGreen"> 
+	A transaction is a unit of program execution that accesses and or possibly updates various data items . <u> acid properties</u> 
+ of a transaction are : <br> 
+1 atomicity --- either transaction executes in  entirety or none executes at all <br> 
+2 consistency --- state of database remains same both before and after transaction despite system changes<br>  
+3 isolation --- despite concurrent execution of transactions , each transaction proceeds independent of others despite <br> 
+system changes <br> 
+4 durability --- any modifications made to database as a result of transaction persist even if there are system changes <br><br>  
+
+Examples – there’s a schedule involving 2 accounts a and b, initial values in   a and b are$1000 and $2000 .<br>  
+a transaction occurs that transfers $ 50 from  a to b , as a result , final values in  a and  b become $ 950 and $ 2050 , <br>  
+clearly a consistent state, as sum a+b is preserved both before and after transaction .<br> 
+thereafter we suppose that a system failure occurs after write –a committed but before write –b committed , <br> 
+so final values in  a and b become $ 950 and $2000 clearly an inconsistent state as sum a+b is no longer <br> 
+preserved both before and after transaction . even if system failure did not occurs and transaction proceeded to completion,<br> 
+ this inconsistent state would not have been visible except during occurrence of transaction. <br> 
+ This reflects again  atomicity . isolation is preserved . durability is preserved through recovery mgmt. component of transactions <br><br>  
+<a target="_blank"  href="https://engineeringatscale.substack.com/p/acid-properties-databases-explained"><img src="https://substackcdn.com/image/fetch/$s_!ga-1!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Fbac45aff-4ebb-4654-94db-27a793f61309_1253x883.gif" alt="g" width="250" height ="250"></a> 
+<br> 
+</section> 
+<br> 
+<section id="sp">
+spatial databases , text databases – spatial databases are derived from geo spatial  consortium and <br> 
+  used   to draw 3d geometric shapes , add onto or modify existing 3d geometric shapes , have observer reference<br> 
+ and endowed with 3d spatial indexes as hh code and z order <br>
+Text databases are in  word docs and text files and respond to Ad Hoc queries <br><br>
+</section> 
+<br> 
+<section id ="data mining ">
+While data mining --- offline structured text and numeric data where patterns matched ,<br> 
+ web mining --- online unstructured and semi structured text and numeric data where no patterns matched . <br> 
+web usage mining where web data stored in   web logs , web content mining that considers semi structured hyper link of www<br> 
+ and web structure mining that considers page layout of www. Challenges in  web mining --- data segmentation<br>
+</section> 
+<br> 
+<section id ="outliers"> 
+	Where the data has outliers decision tree induction is used and binary trees<br> 
+ are pruned to off set this kind of data in  pre or post pruning , wherein  post pruned trees are a reliable approach . <br> 
+a separate set of tuples cannot be used to detect outliers , as does not deal with training samples and does not address over fitted<br> 
+ data .outliers analysis --- clustering , regression and regression  is preferred <br><br> 
+<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcReNQauTuV-Ol1jrSLUrPIWapXlKJUCj58h-FGVQCedxg&s=10" alt="g"  width ="300" height ="300"> 
+<br> 
+</section> 
+<br>
+<section id="dwh architecture"> 
+	A dwh --- 3 tier layered architecture that has foll. Layers --- bottom layer --- centralized RDBMS  servers and MD DBMS  --- parallel processing , improved scalability . middle layer – OLAP,  top layer --- user programs that interact with OLAP  servers 
+<br> 
+</section> 
+<br>
+<section id="data discretization"> 
+	<u> Data discretization</u>  considers a continuous range of attributes in  split ,merge and concept hierarchy<br> 
+ that generates a hierarchy of attributes , used in   dimensional data reduction  , data granularity levels <br><br>
+<a target="_blank"  href="https://medium.com/codex/data-discretization-b5faa2b77f06"><img src="https://miro.medium.com/1*HMnSGhAODKC6eo8bejuzxA.png" alt="g" width="350"  height ="350"></a>
+<br> 
+</section> 
+<br> 
+<section id="attributes"> 
+nominal --- data order is not imp though imp is difference in  data intervals <br> 
+--- ordinal --- data order is imp though not imp is difference in data intervals<br> 
+ ---- interval attributes --- imp is data order + difference in  data intervals<br> 
+ ---  ratio attributes --- imp is data order , difference in  data intervals and a 0.0 where 0.0 =none or no data<br><br>
+</section> 
+<br> 
+<section id ="data-mining types"> 
+	Classification ----- discrete unordered data , causes grouping of similar data, unlike eager type lazy classifiers <br> 
+= unsupervised learning where target attributes and end result not explicit .<br> 
+ example of eager type --- decision tree , Bayesian and examples of lazy type --- CBR  <br><br> 
+	Association rule mining --- frequent patterns , correlated data and uses support , support count ,<br> 
+ confidence where antecedent foll.  Consequent and generic measure  lift , that finds rule interestingness , 0<lift<1.<br> 
+all strong association rules are not interesting , correlation does not imply causation.<br>
+ Apriori property states that mean of sum of sequential patterns less than sequential subpatterns. Apriori algorithm uses join<br> 
+ and prune , wherein  join , link each of k+1 items from k – data to itself, in prune – iterates in k no of passes <br> 
+	Regression --- examples of past . linear regression  finds a st line between 1 predictors and 1 response variable ,<br> 
+ non linear regression --- quadratic  equation between 2 or more predictor and 1 response variables <br><br> 
+</section> 
+<br>
+<section id="olap"> 
+<a target="_blank" href="https://cci.drexel.edu/faculty/song/courses/info%20607/tutorial_OLAP/server.htm"><img src="https://cci.drexel.edu/faculty/song/courses/info%20607/tutorial_OLAP/images/olapserver.gif" alt="h" width="350"  height ="350"></a> 
+
+<br> 
+<img src="https://www.researchgate.net/profile/Apollinaire-Batoure-Bamana/publication/327656028/figure/tbl1/AS:673012806336514@1537470165105/DIFFERENCES-BETWEEN-OLTP-AND-OLAP.png" alt="g" width="400"  height ="400"> 
+<br> 
+</section> 
+<br><br> 
+<footer> 
+webpage from <h2><a target="_blank" href="#ratul"> ratul</a></h2> 
+<br> 
+</footer>
+<br><br> 
+</body>
+</html> 
+
+
+
+
+
+ 
+
+
+
+
+ 
+
+
